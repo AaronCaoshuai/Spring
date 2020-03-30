@@ -1,5 +1,6 @@
 package com.aaron.spring.ioc;
 
+import com.aaron.spring.ioc.xml.di.Project;
 import com.aaron.spring.ioc.xml.po.Student;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -19,8 +20,13 @@ public class IocXmlTest {
         Student student2 = (Student) context.getBean("student");
         System.out.println(student1 == student2);
 
-        //容器销毁对象调用设置的destroy方法
-        ((ClassPathXmlApplicationContext) context).close();
+       /* //容器销毁对象调用设置的destroy方法
+        ((ClassPathXmlApplicationContext) context).close();*/
+
+       //测试DI手动注入 构造函数注入和setter方法注入
+        Project project = (Project)context.getBean("project");
+        System.out.println(project);
+
 
     }
 }

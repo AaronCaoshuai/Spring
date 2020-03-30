@@ -1,12 +1,16 @@
 package com.aaron.spring.ioc.anno.po;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 @Component
 public class Course {
-
+    @Value("英语")
     private String name;
-
+    @Value("123")
     private String num;
 
     public String getName() {
@@ -25,10 +29,12 @@ public class Course {
         this.num = num;
     }
 
+    @PostConstruct
     public void init(){
         System.out.println("course init");
     }
 
+    @PreDestroy
     public void destroy(){
         System.out.println("course destroy");
     }

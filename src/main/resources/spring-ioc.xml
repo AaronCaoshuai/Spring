@@ -23,4 +23,37 @@
         <property name="course" ref="course"/>
     </bean>
 
+    <!--DI属性手动注入 构造方法注入和Setter方法注入-->
+    <bean id="worker" class="com.aaron.spring.ioc.xml.di.Worker">
+        <constructor-arg name="name" value="张三"/>
+        <constructor-arg name="sex" value="男"/>
+        <constructor-arg name="age" value="22"/>
+    </bean>
+
+    <bean id="project" class="com.aaron.spring.ioc.xml.di.Project">
+        <property name="name" value="大项目"/>
+        <property name="type" value="一级"/>
+        <property name="workerList">
+            <list>
+                <ref bean="worker"/>
+            </list>
+        </property>
+
+        <property name="workerSet">
+            <set>
+                <ref bean="worker"/>
+            </set>
+        </property>
+        <property name="workers">
+            <array>
+                <ref bean="worker"/>
+            </array>
+        </property>
+        <property name="workerMap">
+            <map>
+                <entry key="1" value-ref="worker"/>
+            </map>
+        </property>
+    </bean>
+
 </beans>

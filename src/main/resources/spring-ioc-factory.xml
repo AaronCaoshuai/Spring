@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--使用静态工厂创建对象
+    id属性:指定bean的id,用于从容器获取
+    class属性:指定静态工厂的全限定类名
+    factory-method属性:指定生产对象的静态方法
+    -->
+    <bean id="userService" class="com.aaron.spring.ioc.factory.StaticFactory" factory-method="createUserService"/>
+    <!--使用实例工厂创建对象
+    先把工厂的创建交给spring来管理
+    然后在使用工厂的bean来调用里面的方法
+    factory-bean 属性:用于指定实例工厂bean的id
+    factory-method属性:用于指定实例工厂中创建对象的方法
+    -->
+    <bean id="instanceFactory" class="com.aaron.spring.ioc.factory.InstanceFactory"/>
+    <bean id="orderService" factory-bean="instanceFactory" factory-method="createOrderService"/>
+
+</beans>
